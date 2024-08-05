@@ -32,6 +32,8 @@ public:
 	void Resize_Fldg(void);
 
 	void Resize_TopDlg(void);
+	void Resize_OgreWin(void);
+
 
 };
 

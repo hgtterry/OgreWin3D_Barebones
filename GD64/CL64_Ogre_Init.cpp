@@ -79,7 +79,7 @@ void CL64_Ogre_Init::InitOgre(void)
 	App->CL_Grid->Grid_Update(1);
 	App->CL_Grid->Hair_Update(1);
 
-	OgreEntity = mSceneMgr->createEntity("Cube.mesh");
+	OgreEntity = mSceneMgr->createEntity("Sinbad.mesh");
 	OgreNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
 	OgreNode->attachObject(OgreEntity);
 	Show_Test_Cube();
@@ -94,8 +94,6 @@ void CL64_Ogre_Init::InitOgre(void)
 
 	App->CL_Player->Create_Player_Object();
 
-	//Ogre::Entity* Poo = mSceneMgr->createEntity("C:\\Users\\Terry\\Desktop\\Models\\Obj_Models\\crate.obj");
-	
 }
 
 // *************************************************************************

@@ -29,7 +29,6 @@ CL64_App::CL64_App(void)
 {
 	CL_Ogre =			nullptr;
 	CL_Grid =			nullptr;
-	CL_SplitterViews =	nullptr;
 	CL_Keyboard =		nullptr;
 	CL_Camera =			nullptr;
 	CL_Ini_File =		nullptr;
@@ -59,7 +58,6 @@ CL64_App::CL64_App(void)
 	CursorPosX = 500;
 	CursorPosY = 500;
 
-	OgreStarted = 0;
 	AppBackground = 0;
 
 	Font_CB15 = 0;
@@ -81,6 +79,7 @@ CL64_App::CL64_App(void)
 	Brush_Tabs_UnSelected = 0;
 
 	Debug_App = 1;
+	flag_OgreStarted = 0;
 
 	Block_Mouse_Buttons = 0;
 }
@@ -98,7 +97,6 @@ void CL64_App::InitApp(void)
 	
 	CL_Ogre =			new CL64_Ogre_Init();
 	CL_Grid =			new CL64_Grid();
-	CL_SplitterViews =	new CL64_SplitterViews();
 	CL_Keyboard =		new CL64_Keyboard();
 	CL_Camera =			new	CL64_Camera();
 	CL_Ini_File =		new CL64_Ini_File();
