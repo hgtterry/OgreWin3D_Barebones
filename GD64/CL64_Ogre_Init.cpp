@@ -203,8 +203,9 @@ bool CL64_Ogre_Init::createCamera(void)
 	mCamera->setFarClipDistance(Ogre::Real(8000));
 
 	camNode->attachObject(mCamera);
-	camNode->setPosition(0, 90, 100);
-	camNode->lookAt(Ogre::Vector3(0, 30, 0),Ogre::Node::TS_WORLD);
+
+	camNode->setPosition(Ogre::Vector3(0, 5, 15));
+	camNode->lookAt(Ogre::Vector3(0, 0, 0), Ogre::Node::TS_WORLD);
 
 	return 1;
 }
