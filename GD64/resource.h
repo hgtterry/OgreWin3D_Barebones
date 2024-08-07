@@ -25,7 +25,6 @@
 #define IDD_TB_CAMERA                   138
 #define IDB_GRIDOFF                     139
 #define IDD_TB_CAMERA1                  139
-#define IDD_TB_DEMOS                    139
 #define IDB_HAIRON                      140
 #define IDB_HAIROFF                     141
 #define IDC_CK_SU_FULLSCREEN            1000

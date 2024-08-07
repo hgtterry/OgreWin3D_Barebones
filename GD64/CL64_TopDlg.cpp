@@ -44,9 +44,6 @@ CL64_TopDlg::CL64_TopDlg(void)
 	Toggle_Cam_ModelMode_Flag = 1;
 	Toggle_Cam_FreeMode_Flag = 0;
 
-	Toggle_Demos_Demo_1_Flag = 0;
-	Toggle_Demos_Demo_2_Flag = 0;
-
 	Toggle_PhysicaDebug_Node_Flag = 1;
 }
 
@@ -60,7 +57,6 @@ CL64_TopDlg::~CL64_TopDlg(void)
 void CL64_TopDlg::Start_TopBar()
 {
 	TabsHwnd = CreateDialog(App->hInst, (LPCTSTR)IDD_TOPBAR, App->MainHwnd, (DLGPROC)TopBar_Proc);
-	Init_Bmps_Globals();
 }
 
 // *************************************************************************
@@ -76,9 +72,7 @@ LRESULT CALLBACK CL64_TopDlg::TopBar_Proc(HWND hDlg, UINT message, WPARAM wParam
 
 		App->CL_TopDlg->Start_Tabs_Headers();
 		App->CL_TopDlg->Start_Debug_TB();
-		App->CL_TopDlg->Start_Camera_TB();
-		App->CL_TopDlg->Start_Demos_TB();
-
+		
 		App->CL_TopDlg->Hide_Tabs();
 
 		// Default Tab
@@ -123,9 +117,7 @@ LRESULT CALLBACK CL64_TopDlg::Tabs_Headers_Proc(HWND hDlg, UINT message, WPARAM 
 	case WM_INITDIALOG:
 	{
 		SendDlgItemMessage(hDlg, IDC_BT_TDH_DEBUG, WM_SETFONT, (WPARAM)App->Font_CB15, MAKELPARAM(TRUE, 0));
-		SendDlgItemMessage(hDlg, IDC_BT_TBH_CAMERA, WM_SETFONT, (WPARAM)App->Font_CB15, MAKELPARAM(TRUE, 0));
-		SendDlgItemMessage(hDlg, IDC_BT_TD_DEMOSTAB, WM_SETFONT, (WPARAM)App->Font_CB15, MAKELPARAM(TRUE, 0));
-		
+
 		return TRUE;
 	}
 
@@ -145,21 +137,6 @@ LRESULT CALLBACK CL64_TopDlg::Tabs_Headers_Proc(HWND hDlg, UINT message, WPARAM 
 			return CDRF_DODEFAULT;
 		}
 
-		if (some_item->idFrom == IDC_BT_TBH_CAMERA)
-		{
-			LPNMCUSTOMDRAW item = (LPNMCUSTOMDRAW)some_item;
-			App->Custom_Button_Toggle_Tabs(item, App->CL_TopDlg->Toggle_Tabs_Camera_Flag);
-			return CDRF_DODEFAULT;
-		}
-
-		if (some_item->idFrom == IDC_BT_TD_DEMOSTAB)
-		{
-			LPNMCUSTOMDRAW item = (LPNMCUSTOMDRAW)some_item;
-			App->Custom_Button_Toggle_Tabs(item, App->CL_TopDlg->Toggle_Tabs_Demos_Flag);
-			return CDRF_DODEFAULT;
-		}
-
-		
 		return CDRF_DODEFAULT;
 	}
 
@@ -176,28 +153,6 @@ LRESULT CALLBACK CL64_TopDlg::Tabs_Headers_Proc(HWND hDlg, UINT message, WPARAM 
 			return TRUE;
 		}
 
-		if (LOWORD(wParam) == IDC_BT_TBH_CAMERA)
-		{
-			App->CL_TopDlg->Hide_Tabs();
-			ShowWindow(App->CL_TopDlg->Camera_TB_hWnd, SW_SHOW);
-			App->CL_TopDlg->Toggle_Tabs_Camera_Flag = 1;
-
-			RedrawWindow(App->CL_TopDlg->Tabs_TB_hWnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
-
-			return TRUE;
-		}
-
-		if (LOWORD(wParam) == IDC_BT_TD_DEMOSTAB)
-		{
-			App->CL_TopDlg->Hide_Tabs();
-			ShowWindow(App->CL_TopDlg->Demos_TB_hWnd, SW_SHOW);
-			App->CL_TopDlg->Toggle_Tabs_Demos_Flag = 1;
-
-			RedrawWindow(App->CL_TopDlg->Tabs_TB_hWnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
-
-			return TRUE;
-		}
-		
 	}
 	}
 	return FALSE;
@@ -363,138 +318,5 @@ LRESULT CALLBACK CL64_TopDlg::Debug_TB_Proc(HWND hDlg, UINT message, WPARAM wPar
 	return FALSE;
 }
 
-// *************************************************************************
-// *			Start_Camera_TB:- Terry and Hazel Flanigan 2024			   *
-// *************************************************************************
-void CL64_TopDlg::Start_Camera_TB(void)
-{
-	Camera_TB_hWnd = CreateDialog(App->hInst, (LPCTSTR)IDD_TB_CAMERA, Tabs_TB_hWnd, (DLGPROC)Camera_TB_Proc);
-}
 
-// *************************************************************************
-// *			Camera_TB_Proc:- Terry and Hazel Flanigan 2024			   *
-// *************************************************************************
-LRESULT CALLBACK CL64_TopDlg::Camera_TB_Proc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-
-	switch (message)
-	{
-	case WM_INITDIALOG:
-	{
-		SendDlgItemMessage(hDlg, IDC_BT_CAMERA_MODEL, WM_SETFONT, (WPARAM)App->Font_CB15, MAKELPARAM(TRUE, 0));
-		SendDlgItemMessage(hDlg, IDC_BT_CAMERA_FREE, WM_SETFONT, (WPARAM)App->Font_CB15, MAKELPARAM(TRUE, 0));
-		
-		return TRUE;
-	}
-
-	case WM_CTLCOLORDLG:
-	{
-		return (LONG)App->Brush_Tabs;
-	}
-
-	case WM_NOTIFY:
-	{
-		LPNMHDR some_item = (LPNMHDR)lParam;
-
-		if (some_item->idFrom == IDC_BT_CAMERA_MODEL)
-		{
-			LPNMCUSTOMDRAW item = (LPNMCUSTOMDRAW)some_item;
-			App->Custom_Button_Toggle(item, App->CL_TopDlg->Toggle_Cam_ModelMode_Flag);
-			return CDRF_DODEFAULT;
-		}
-
-		if (some_item->idFrom == IDC_BT_CAMERA_FREE)
-		{
-			LPNMCUSTOMDRAW item = (LPNMCUSTOMDRAW)some_item;
-			App->Custom_Button_Toggle(item, App->CL_TopDlg->Toggle_Cam_FreeMode_Flag);
-			return CDRF_DODEFAULT;
-		}
-
-		return CDRF_DODEFAULT;
-	}
-
-	case WM_COMMAND:
-	{
-
-		if (LOWORD(wParam) == IDC_BT_CAMERA_MODEL)
-		{
-			App->CL_Camera->Reset_View();
-			App->CL_Ogre->OgreListener->CameraMode = Enums::Cam_Mode_Model;
-
-			App->CL_TopDlg->Toggle_Cam_ModelMode_Flag = 1;
-			App->CL_TopDlg->Toggle_Cam_FreeMode_Flag = 0;
-
-			RedrawWindow(App->CL_TopDlg->Camera_TB_hWnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
-
-			return 1;
-		}
-
-		if (LOWORD(wParam) == IDC_BT_CAMERA_FREE)
-		{
-			App->CL_Camera->Reset_View();
-			App->CL_Ogre->OgreListener->CameraMode = Enums::Cam_Mode_Free;
-
-			App->CL_TopDlg->Toggle_Cam_FreeMode_Flag = 1;
-			App->CL_TopDlg->Toggle_Cam_ModelMode_Flag = 0;
-			
-			RedrawWindow(App->CL_TopDlg->Camera_TB_hWnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
-			return 1;
-		}
-		
-		return FALSE;
-	}
-
-	}
-	return FALSE;
-}
-
-// *************************************************************************
-// *			Start_Demos_TB:- Terry and Hazel Flanigan 2024			   *
-// *************************************************************************
-void CL64_TopDlg::Start_Demos_TB(void)
-{
-	Demos_TB_hWnd = CreateDialog(App->hInst, (LPCTSTR)IDD_TB_DEMOS, Tabs_TB_hWnd, (DLGPROC)Demos_TB_Proc);
-}
-
-// *************************************************************************
-// *			Demos_TB_Proc:- Terry and Hazel Flanigan 2024			   *
-// *************************************************************************
-LRESULT CALLBACK CL64_TopDlg::Demos_TB_Proc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
-{
-
-	switch (message)
-	{
-	case WM_INITDIALOG:
-	{
-		return TRUE;
-	}
-
-	case WM_CTLCOLORDLG:
-	{
-		return (LONG)App->Brush_Tabs;
-	}
-
-	case WM_NOTIFY:
-	{
-		LPNMHDR some_item = (LPNMHDR)lParam;
-
-		return CDRF_DODEFAULT;
-	}
-
-	case WM_COMMAND:
-	{
-		return FALSE;
-	}
-
-	}
-	return FALSE;
-}
-
-// *************************************************************************
-// *						Init_Bmps_Globals Terry Bernie				   *
-// *************************************************************************
-void CL64_TopDlg::Init_Bmps_Globals(void)
-{
-
-}
 

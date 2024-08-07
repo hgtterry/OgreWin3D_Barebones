@@ -35,16 +35,12 @@ public:
 
 	// Tab Options
 	void Start_Debug_TB(void);
-	void Start_Camera_TB(void);
-	void Start_Demos_TB(void);
-
+	
 	bool Toggle_Tabs_Debug_Flag;
 	bool Toggle_Tabs_Camera_Flag;
 	bool Toggle_Tabs_Demos_Flag;
 	
 	bool Toggle_PhysicaDebug_Node_Flag;
-
-	void Init_Bmps_Globals(void);
 
 	HWND TabsHwnd;
 	HWND Tabs_TB_hWnd;
@@ -61,14 +57,9 @@ private:
 
 	// Tab Options
 	static LRESULT CALLBACK Debug_TB_Proc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-	static LRESULT CALLBACK Camera_TB_Proc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-	static LRESULT CALLBACK Demos_TB_Proc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam);
-
+	
 	bool Toggle_Cam_ModelMode_Flag;
 	bool Toggle_Cam_FreeMode_Flag;
-
-	bool Toggle_Demos_Demo_1_Flag;
-	bool Toggle_Demos_Demo_2_Flag;
 
 };
 
