@@ -18,11 +18,7 @@
 #define ID_VIEW_SIDEVIEW                132
 #define ID_VIEW_FRONTVIEW               133
 #define IDD_PREFERENCES                 134
-#define IDD_TOPBAR                      135
-#define IDD_TB_TAB                      136
-#define IDD_TB_DEBUG                    137
 #define IDB_GRIDON                      138
-#define IDD_TB_CAMERA                   138
 #define IDB_GRIDOFF                     139
 #define IDD_TB_CAMERA1                  139
 #define IDB_HAIRON                      140
@@ -30,11 +26,6 @@
 #define IDC_CK_SU_FULLSCREEN            1000
 #define IDC_ST_STARTUP                  1001
 #define IDC_CK_SU_FULL3DVIEW            1002
-#define IDC_BT_TDH_DEBUG                1002
-#define IDC_BT_TD_DEBUG_RESETVIEW       1003
-#define IDC_BT_TD_DEBUG_IMGUIDEMO       1004
-#define IDC_BT_TD_DEBUG_TESTCUBE        1005
-#define IDC_BT_TD_DEBUG_IMGUIFPS        1006
 #define IDC_BUTTON1                     1007
 #define IDC_BUTTON2                     1008
 #define IDC_BT_TBH_CAMERA               1008
@@ -43,7 +34,6 @@
 #define IDC_BUTTON4                     1010
 #define IDC_BT_CAMERA_FREE              1010
 #define IDC_TBSHOWHAIR                  1011
-#define IDC_BT_TD_DEBUG_PHYSICSDEBUG    1011
 #define IDC_TBSHOWGRID                  1012
 #define IDC_BT_TD_DEMOSTAB              1012
 #define IDC_BT_TD_DEMOS_DEMO1           1013

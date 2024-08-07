@@ -75,9 +75,6 @@
     <ClInclude Include="CL64_Textures.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CL64_TopDlg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CL64_Panels.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -150,9 +147,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CL64_Textures.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CL64_TopDlg.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CL64_Panels.cpp">

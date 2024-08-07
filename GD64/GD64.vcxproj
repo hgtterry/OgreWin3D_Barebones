@@ -183,7 +183,6 @@
     <ClInclude Include="CL64_Preferences.h" />
     <ClInclude Include="CL64_Scene.h" />
     <ClInclude Include="CL64_Textures.h" />
-    <ClInclude Include="CL64_TopDlg.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="GD64.h" />
     <ClInclude Include="pch.h" />
@@ -213,7 +212,6 @@
     <ClCompile Include="CL64_Preferences.cpp" />
     <ClCompile Include="CL64_Scene.cpp" />
     <ClCompile Include="CL64_Textures.cpp" />
-    <ClCompile Include="CL64_TopDlg.cpp" />
     <ClCompile Include="GD64.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

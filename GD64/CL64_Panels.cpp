@@ -51,23 +51,10 @@ void CL64_Panels::Resize_Fldg(void)
 	NewWidth = 417 + WidthClient + 200;
 
 	HeightClient = rcl.bottom - rcl.top;
-	NewHeight = HeightClient - 150;
+	NewHeight = HeightClient;
 
 	////-----------------Ogre Window
-	SetWindowPos(App->Fdlg, NULL, 2, 80, rcl.right-4, NewHeight + 65, SWP_NOZORDER);
-
-}
-
-// *************************************************************************
-// *			Resize_TopDlg:- Terry and Hazel Flanigan 2024			   *
-// *************************************************************************
-void CL64_Panels::Resize_TopDlg(void)
-{
-	RECT rcl;
-
-	GetClientRect(App->MainHwnd, &rcl);
-
-	SetWindowPos(App->CL_TopDlg->TabsHwnd, NULL, 2,2, rcl.right-4, 76, SWP_NOZORDER);
+	SetWindowPos(App->Fdlg, NULL, 2, 2, rcl.right-4, NewHeight, SWP_NOZORDER);
 
 }
 
@@ -89,10 +76,10 @@ void CL64_Panels::Resize_OgreWin(void)
 	NewWidth = 417 + WidthClient + 200;
 
 	HeightClient = rcl.bottom - rcl.top;
-	NewHeight = HeightClient - 150;
+	NewHeight = HeightClient;
 
 	//-----------------Ogre Window
-	SetWindowPos(App->ViewGLhWnd, NULL, 4, 2, NewWidth + 380, NewHeight + 58, SWP_NOZORDER);
+	SetWindowPos(App->ViewGLhWnd, NULL, 4, 2, NewWidth + 380, NewHeight-10, SWP_NOZORDER);
 
 	if (App->flag_OgreStarted == 1)
 	{

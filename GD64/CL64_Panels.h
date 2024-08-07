@@ -30,10 +30,7 @@ public:
 	~CL64_Panels(void);
 
 	void Resize_Fldg(void);
-
-	void Resize_TopDlg(void);
 	void Resize_OgreWin(void);
-
 
 };
 
