@@ -55,5 +55,7 @@ public:
 
 	float Model_Data_PosX;
 	float Model_Data_PosY;
+
+	bool flag_Imgui_Initialized;
 };
 

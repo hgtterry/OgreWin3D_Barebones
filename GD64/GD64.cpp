@@ -451,29 +451,28 @@ LRESULT CALLBACK Ogre3D_Proc(HWND hDlg, UINT message, WPARAM wParam, LPARAM lPar
 
 	case WM_MOUSEMOVE: // ok up and running and we have a loop for mouse
 	{
-		POINT p;
-
-		ImGuiIO& io = ImGui::GetIO();
-
 		POINT pos;
 
 		GetCursorPos(&pos);
 		ScreenToClient(App->ViewGLhWnd, &pos);
-		io.MousePos.x = static_cast<float>(pos.x);
-		io.MousePos.y = static_cast<float>(pos.y);
-		//App->CL_Ogre->m_imgui.mouseMoved();
 
-
-		if (GetCursorPos(&p) && App->flag_OgreStarted == 1)// && App->CL10_Dimensions->Mouse_Move_Mode == Enums::Edit_Mouse_None)
+		if (App->CL_ImGui->flag_Imgui_Initialized == 1)
 		{
-			if (ScreenToClient(App->ViewGLhWnd, &p))
+			ImGuiIO& io = ImGui::GetIO();
+			io.MousePos.x = static_cast<float>(pos.x);
+			io.MousePos.y = static_cast<float>(pos.y);
+		}
+		
+		if (GetCursorPos(&pos) && App->flag_OgreStarted == 1)
+		{
+			if (ScreenToClient(App->ViewGLhWnd, &pos))
 			{
 				RECT rc;
 				GetClientRect(App->ViewGLhWnd, &rc);
 				int width = rc.right - rc.left;
 				int height = rc.bottom - rc.top;
 
-				float tx = ((float)width / 2) - (float)p.x;
+				float tx = ((float)width / 2) - (float)pos.x;
 			}
 		}
 

@@ -41,6 +41,8 @@ CL64_ImGui::CL64_ImGui(void)
 
 	Model_Data_PosX = 0;
 	Model_Data_PosY = 0;
+
+	flag_Imgui_Initialized = 0;
 }
 
 CL64_ImGui::~CL64_ImGui(void)
@@ -73,9 +75,7 @@ void CL64_ImGui::Init_ImGui(void)
 				Ogre::ImGuiOverlay::NewFrame();
 			}
 
-			//Base->addInputListener(Base->getImGuiInputListener());
-			//mWindow->addListener(this);
-			//App->Say("Ok");
+			flag_Imgui_Initialized = 1;
 
 		}
 		else
