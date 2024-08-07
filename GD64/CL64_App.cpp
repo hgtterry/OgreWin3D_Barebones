@@ -44,7 +44,6 @@ CL64_App::CL64_App(void)
 	CL_Converters =		nullptr;
 	CL_Bullet =			nullptr;
 	CL_Player =			nullptr;
-	CL_Demos =			nullptr;
 
 	hInst =			nullptr;
 	MainHwnd =		nullptr;
@@ -112,8 +111,7 @@ void CL64_App::InitApp(void)
 	CL_Converters =		new CL64_Converters();
 	CL_Bullet =			new CL64_Bullet();
 	CL_Player =			new CL64_Player();
-	CL_Demos =			new CL64_Demos();
-
+	
 	SetBrushes_Fonts();
 }
 

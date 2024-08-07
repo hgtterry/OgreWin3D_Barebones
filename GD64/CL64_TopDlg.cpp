@@ -99,50 +99,6 @@ LRESULT CALLBACK CL64_TopDlg::TopBar_Proc(HWND hDlg, UINT message, WPARAM wParam
 
 	case WM_COMMAND:
 
-		if (LOWORD(wParam) == IDC_TBSHOWGRID)
-		{
-			HWND Temp = GetDlgItem(hDlg, IDC_TBSHOWGRID);
-
-			if (App->CL_Grid->ShowGridFlag == 1)
-			{
-				App->CL_Grid->Grid_SetVisible(0);
-				App->CL_Grid->ShowGridFlag = 0;
-
-				SendMessage(Temp, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HANDLE)App->Hnd_GridOff_Bmp);
-			}
-			else
-			{
-				App->CL_Grid->Grid_SetVisible(1);
-				App->CL_Grid->ShowGridFlag = 1;
-
-				SendMessage(Temp, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HANDLE)App->Hnd_GridOn_Bmp);
-
-			}
-			return TRUE;
-		}
-
-		//-------------------------------------------------------- Show Hair
-		if (LOWORD(wParam) == IDC_TBSHOWHAIR)
-		{
-			HWND Temp = GetDlgItem(hDlg, IDC_TBSHOWHAIR);
-
-			if (App->CL_Grid->ShowHair == 1)
-			{
-				App->CL_Grid->ShowHair = 0;
-				App->CL_Grid->Hair_SetVisible(0);
-
-				SendMessage(Temp, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HANDLE)App->Hnd_HairOff_Bmp);
-			}
-			else
-			{
-				App->CL_Grid->ShowHair = 1;
-				App->CL_Grid->Hair_SetVisible(1);
-
-				SendMessage(Temp, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HANDLE)App->Hnd_HairOn_Bmp);
-			}
-			return TRUE;
-		}
-
 		break;
 	}
 	return FALSE;
@@ -510,9 +466,6 @@ LRESULT CALLBACK CL64_TopDlg::Demos_TB_Proc(HWND hDlg, UINT message, WPARAM wPar
 	{
 	case WM_INITDIALOG:
 	{
-		SendDlgItemMessage(hDlg, IDC_BT_TD_DEMOS_DEMO1, WM_SETFONT, (WPARAM)App->Font_CB15, MAKELPARAM(TRUE, 0));
-		SendDlgItemMessage(hDlg, IDC_BT_TD_DEMOS_DEMO2, WM_SETFONT, (WPARAM)App->Font_CB15, MAKELPARAM(TRUE, 0));
-
 		return TRUE;
 	}
 
@@ -525,42 +478,11 @@ LRESULT CALLBACK CL64_TopDlg::Demos_TB_Proc(HWND hDlg, UINT message, WPARAM wPar
 	{
 		LPNMHDR some_item = (LPNMHDR)lParam;
 
-		if (some_item->idFrom == IDC_BT_TD_DEMOS_DEMO1)
-		{
-			LPNMCUSTOMDRAW item = (LPNMCUSTOMDRAW)some_item;
-			App->Custom_Button_Toggle(item, App->CL_TopDlg->Toggle_Demos_Demo_1_Flag);
-			return CDRF_DODEFAULT;
-		}
-
-		if (some_item->idFrom == IDC_BT_TD_DEMOS_DEMO2)
-		{
-			LPNMCUSTOMDRAW item = (LPNMCUSTOMDRAW)some_item;
-			App->Custom_Button_Toggle(item, App->CL_TopDlg->Toggle_Demos_Demo_2_Flag);
-			return CDRF_DODEFAULT;
-		}
-
 		return CDRF_DODEFAULT;
 	}
 
 	case WM_COMMAND:
 	{
-
-		if (LOWORD(wParam) == IDC_BT_TD_DEMOS_DEMO1)
-		{
-			App->CL_Demos->Demo_1();
-			RedrawWindow(App->CL_TopDlg->Camera_TB_hWnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
-
-			return 1;
-		}
-
-		if (LOWORD(wParam) == IDC_BT_TD_DEMOS_DEMO2)
-		{
-			App->CL_Demos->Demo_2();
-			RedrawWindow(App->CL_TopDlg->Camera_TB_hWnd, NULL, NULL, RDW_INVALIDATE | RDW_UPDATENOW);
-
-			return 1;
-		}
-
 		return FALSE;
 	}
 
@@ -573,44 +495,6 @@ LRESULT CALLBACK CL64_TopDlg::Demos_TB_Proc(HWND hDlg, UINT message, WPARAM wPar
 // *************************************************************************
 void CL64_TopDlg::Init_Bmps_Globals(void)
 {
-
-	HWND Temp = GetDlgItem(TabsHwnd, IDC_TBSHOWGRID);
-	SendMessage(Temp, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HANDLE)App->Hnd_GridOn_Bmp);
-
-	Temp = GetDlgItem(TabsHwnd, IDC_TBSHOWHAIR);
-	SendMessage(Temp, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HANDLE)App->Hnd_HairOn_Bmp);
-
-	//Temp = GetDlgItem(TabsHwnd, IDC_TBINFO);
-	//SendMessage(Temp, BM_SETIMAGE, (WPARAM)IMAGE_BITMAP, (LPARAM)(HANDLE)App->Hnd_ModelInfo_Bmp);
-
-	HWND hTooltip_TB_2 = CreateWindowEx(0, TOOLTIPS_CLASS, "", TTS_ALWAYSTIP | TTS_BALLOON, 0, 0, 0, 0, App->MainHwnd, 0, App->hInst, 0);
-
-	Temp = GetDlgItem(TabsHwnd, IDC_TBSHOWHAIR);
-	TOOLINFO ti1 = { 0 };
-	ti1.cbSize = sizeof(ti1);
-	ti1.uFlags = TTF_IDISHWND | TTF_SUBCLASS | TTF_CENTERTIP;
-	ti1.uId = (UINT_PTR)Temp;
-	ti1.lpszText = (LPSTR) "Toggle Main Cross Hair";
-	ti1.hwnd = App->MainHwnd;
-	SendMessage(hTooltip_TB_2, TTM_ADDTOOL, 0, (LPARAM)&ti1);
-
-	Temp = GetDlgItem(TabsHwnd, IDC_TBSHOWGRID);
-	TOOLINFO ti2 = { 0 };
-	ti2.cbSize = sizeof(ti2);
-	ti2.uFlags = TTF_IDISHWND | TTF_SUBCLASS | TTF_CENTERTIP;
-	ti2.uId = (UINT_PTR)Temp;
-	ti2.lpszText = (LPSTR) "Toggle Main Grid";
-	ti2.hwnd = App->MainHwnd;
-	SendMessage(hTooltip_TB_2, TTM_ADDTOOL, 0, (LPARAM)&ti2);
-
-	/*Temp = GetDlgItem(TabsHwnd, IDC_TBINFO);
-	TOOLINFO ti8 = { 0 };
-	ti8.cbSize = sizeof(ti8);
-	ti8.uFlags = TTF_IDISHWND | TTF_SUBCLASS | TTF_CENTERTIP;
-	ti8.uId = (UINT_PTR)Temp;
-	ti8.lpszText = (LPSTR) "Show Model Information";
-	ti8.hwnd = App->MainHwnd;
-	SendMessage(hTooltip_TB_2, TTM_ADDTOOL, 0, (LPARAM)&ti8);*/
 
 }
 

@@ -245,6 +245,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			return TRUE;
 		}
 
+		// View -------------------------------------------------------
+		case ID_VIEW_GRID:
+		{
+			if (App->CL_Grid->ShowGridFlag == 1)
+			{
+				App->CL_Grid->Grid_SetVisible(0);
+				App->CL_Grid->ShowGridFlag = 0;
+			}
+			else
+			{
+				App->CL_Grid->Grid_SetVisible(1);
+				App->CL_Grid->ShowGridFlag = 1;
+			}
+
+			return TRUE;
+		}
+
+		case ID_VIEW_CROSSHAIR:
+		{
+			if (App->CL_Grid->ShowHair == 1)
+			{
+				App->CL_Grid->ShowHair = 0;
+				App->CL_Grid->Hair_SetVisible(0);
+			}
+			else
+			{
+				App->CL_Grid->ShowHair = 1;
+				App->CL_Grid->Hair_SetVisible(1);
+			}
+
+			return TRUE;
+		}
+		
+		
 		// Info -------------------------------------------------------
 		case ID_INFO_ASSIMPMODELDATA:
 		{
