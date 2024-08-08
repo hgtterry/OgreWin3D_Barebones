@@ -184,41 +184,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		switch (wmId)
 		{
-		// Debug -------------------------------------------------------
-		case ID_DEBUG_CAMERADATA:
-		{
-			if (App->CL_ImGui->Show_Camera_Data_F == 1)
-			{
-				App->CL_ImGui->Show_Camera_Data_F = 0;
-			}
-			else
-			{
-				App->CL_ImGui->Show_Camera_Data_F = 1;
-			}
-			return TRUE;
-		}
-
-		case ID_DEBUG_TESTPREFERANCE:
-		{
-			App->CL_Preferences->Read_Preferences();
-			return TRUE;
-		}
-
-		case ID_DEBUG_HIDEOGRETESTCUBE:
-		{
-			if (App->CL_Ogre->flag_Hide_Test_Cube == 1)
-			{
-				App->CL_Ogre->flag_Hide_Test_Cube = 0;
-			}
-			else
-			{
-				App->CL_Ogre->flag_Hide_Test_Cube = 1;
-			}
-
-			App->CL_Ogre->Show_Test_Cube();
-
-			return TRUE;
-		}
 
 		// View -------------------------------------------------------
 		case ID_VIEW_GRID:

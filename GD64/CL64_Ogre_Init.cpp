@@ -49,7 +49,6 @@ CL64_Ogre_Init::CL64_Ogre_Init(void)
 	App_Resource_Group = "App_Resource_Group";
 	World_Resource_Group = "World_Resource_Group";
 
-	flag_Hide_Test_Cube = 1;
 	flag_Show_Trays = 1;
 
 	FPSLock = 16666; // Default 60 FPS
@@ -87,7 +86,7 @@ void CL64_Ogre_Init::InitOgre(void)
 	OgreEntity = mSceneMgr->createEntity("Sinbad.mesh");
 	OgreNode = mSceneMgr->getRootSceneNode()->createChildSceneNode();
 	OgreNode->attachObject(OgreEntity);
-	Show_Test_Cube();
+	OgreNode->setVisible(true);
 
 	mTrayMgr = new OgreBites::TrayManager("InterfaceName", mWindow);
 
@@ -309,22 +308,6 @@ bool CL64_Ogre_Init::createFrameListener(void)
 	}
 
 	return TRUE;
-}
-
-// *************************************************************************
-// *			Show_Test_Cube:- Terry and Hazel Flanigan 2024			   *
-// *************************************************************************
-void CL64_Ogre_Init::Show_Test_Cube(void)
-{
-	if (flag_Hide_Test_Cube == 1)
-	{
-		OgreNode->setVisible(true);
-	}
-	else
-	{
-		OgreNode->setVisible(false);
-	}
-
 }
 
 // *************************************************************************

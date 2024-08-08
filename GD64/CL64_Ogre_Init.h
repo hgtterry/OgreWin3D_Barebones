@@ -57,8 +57,6 @@ public:
 	bool createFrameListener(void);
 	// --------------------------------------
 
-
-	void Show_Test_Cube(void);
 	void Show_Trays(bool Enable);
 
 	bool Ogre_Render_Loop(void);
@@ -86,7 +84,6 @@ public:
 	CL64_OGL_Listener*		RenderListener;
 	CL64_DebugBulletWorld*	BulletListener;
 
-
 	Ogre::OverlaySystem* mOverlaySystem;
 	
 	Ogre::ManualObject* manObj;
@@ -99,7 +96,6 @@ public:
 
 	int FPSLock; // FPS Lock Setable (60 FPS Default)
 
-	bool flag_Hide_Test_Cube;
 	bool flag_Show_Trays;
 
 };
