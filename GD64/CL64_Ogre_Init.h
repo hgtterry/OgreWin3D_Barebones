@@ -59,6 +59,7 @@ public:
 
 
 	void Show_Test_Cube(void);
+	void Show_Trays(bool Enable);
 
 	bool Ogre_Render_Loop(void);
 
@@ -99,6 +100,7 @@ public:
 	int FPSLock; // FPS Lock Setable (60 FPS Default)
 
 	bool flag_Hide_Test_Cube;
+	bool flag_Show_Trays;
 
 };
 

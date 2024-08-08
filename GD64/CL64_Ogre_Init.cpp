@@ -50,6 +50,7 @@ CL64_Ogre_Init::CL64_Ogre_Init(void)
 	World_Resource_Group = "World_Resource_Group";
 
 	flag_Hide_Test_Cube = 1;
+	flag_Show_Trays = 1;
 
 	FPSLock = 16666; // Default 60 FPS
 
@@ -366,5 +367,23 @@ bool CL64_Ogre_Init::Ogre_Render_Loop(void)
 	}
 
 	return 1;
+}
+
+// *************************************************************************
+// *			Show_Trays:- Terry and Hazel Flanigan 2024				   *
+// *************************************************************************
+void CL64_Ogre_Init::Show_Trays(bool Enable)
+{
+	if (Enable == 1)
+	{
+		mTrayMgr->showAll();
+		mTrayMgr->hideCursor();
+		flag_Show_Trays = 1;
+	}
+	else
+	{
+		mTrayMgr->hideAll();
+		flag_Show_Trays = 0;
+	}
 }
 

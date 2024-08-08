@@ -31,8 +31,8 @@ CL64_ImGui::CL64_ImGui(void)
 	Camera_Data_Posy = 10;
 
 	StartPos = 0;
-	Show_FPS = 1;
-	Show_ImGui_Demo = 0;
+	flag_Show_FPS = 1;
+	flag_Show_ImGui_Demo = 0;
 	Show_Camera_Data_F = 0;
 	Show_Model_Data_F = 0;
 
@@ -174,12 +174,12 @@ void CL64_ImGui::Load_Font(void)
 // **************************************************************************
 void CL64_ImGui::ImGui_Render_Loop(void)
 {
-	if (Show_FPS == 1)
+	if (flag_Show_FPS == 1)
 	{
 		ImGui_FPS();
 	}
 
-	if (Show_ImGui_Demo == 1)
+	if (flag_Show_ImGui_Demo == 1)
 	{
 		ImGui::ShowDemoWindow();
 	}
@@ -202,7 +202,7 @@ void CL64_ImGui::ImGui_FPS(void)
 {
 	ImGui::SetNextWindowPos(ImVec2(PosX, PosY));
 
-	if (!ImGui::Begin("Ogre Data", &Show_FPS, ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
+	if (!ImGui::Begin("Ogre Data", &flag_Show_FPS, ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
 		| ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoTitleBar))
 	{
 		ImGui::End();

@@ -45,8 +45,8 @@ public:
 	void Model_Data_GUI(void);
 
 	bool StartPos;
-	bool Show_FPS;
-	bool Show_ImGui_Demo;
+	bool flag_Show_FPS;
+	bool flag_Show_ImGui_Demo;
 	bool Show_Camera_Data_F;
 	bool Show_Model_Data_F;
 

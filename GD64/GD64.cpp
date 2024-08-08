@@ -220,20 +220,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			return TRUE;
 		}
 
-		case ID_IMGUI_IMGUIDEMO:
-		{
-			if (App->CL_ImGui->Show_ImGui_Demo == 1)
-			{
-				App->CL_ImGui->Show_ImGui_Demo = 0;
-			}
-			else
-			{
-				App->CL_ImGui->Show_ImGui_Demo = 1;
-			}
-
-			return TRUE;
-		}
-
 		// View -------------------------------------------------------
 		case ID_VIEW_GRID:
 		{
@@ -267,6 +253,47 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			return TRUE;
 		}
 		
+		case ID_VIEW_TRAYSFPS:
+		{
+			if (App->CL_Ogre->flag_Show_Trays == 1)
+			{
+				App->CL_Ogre->Show_Trays(false);
+			}
+			else
+			{
+				App->CL_Ogre->Show_Trays(true);
+			}
+
+			return TRUE;
+		}
+
+		case ID_VIEW_IMGUIFPS:
+		{
+			if (App->CL_ImGui->flag_Show_FPS == 1)
+			{
+				App->CL_ImGui->flag_Show_FPS = 0;
+			}
+			else
+			{
+				App->CL_ImGui->flag_Show_FPS = 1;
+			}
+
+			return TRUE;
+		}
+
+		case ID_VIEW_IMGUIDEMO:
+		{
+			if (App->CL_ImGui->flag_Show_ImGui_Demo == 1)
+			{
+				App->CL_ImGui->flag_Show_ImGui_Demo = 0;
+			}
+			else
+			{
+				App->CL_ImGui->flag_Show_ImGui_Demo = 1;
+			}
+
+			return TRUE;
+		}
 		
 		// Info -------------------------------------------------------
 		case ID_INFO_ASSIMPMODELDATA:
