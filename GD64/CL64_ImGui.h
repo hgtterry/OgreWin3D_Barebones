@@ -42,13 +42,12 @@ public:
 	void ImGui_Render_Loop(void);
 	void ImGui_FPS(void);
 	void Camera_Data_GUI(void);
-	void Model_Data_GUI(void);
-
+	
 	bool StartPos;
 	bool flag_Show_FPS;
 	bool flag_Show_ImGui_Demo;
 	bool Show_Camera_Data_F;
-	bool Show_Model_Data_F;
+	
 
 	float Camera_Data_PosX;
 	float Camera_Data_Posy;

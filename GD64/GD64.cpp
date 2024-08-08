@@ -295,21 +295,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			return TRUE;
 		}
 		
-		// Info -------------------------------------------------------
-		case ID_INFO_ASSIMPMODELDATA:
-		{
-			if (App->CL_ImGui->Show_Model_Data_F == 1)
-			{
-				App->CL_ImGui->Show_Model_Data_F = 0;
-			}
-			else
-			{
-				App->CL_ImGui->Show_Model_Data_F = 1;
-			}
-
-			return TRUE;
-		}
-
 		// Camera -------------------------------------------------------
 		case ID_MODE_MODEL:
 		{

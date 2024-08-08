@@ -34,8 +34,7 @@ CL64_ImGui::CL64_ImGui(void)
 	flag_Show_FPS = 1;
 	flag_Show_ImGui_Demo = 0;
 	Show_Camera_Data_F = 0;
-	Show_Model_Data_F = 0;
-
+	
 	PosX = 500;
 	PosY = 500;
 
@@ -188,11 +187,6 @@ void CL64_ImGui::ImGui_Render_Loop(void)
 	{
 		Camera_Data_GUI();
 	}
-
-	if (Show_Model_Data_F == 1)
-	{
-		Model_Data_GUI();
-	}
 }
 
 // *************************************************************************
@@ -265,48 +259,3 @@ void CL64_ImGui::Camera_Data_GUI(void)
 	}
 }
 
-// *************************************************************************
-// *			Model_Data_GUI:- Terry and Hazel Flanigan 2023			   *
-// *************************************************************************
-void CL64_ImGui::Model_Data_GUI(void)
-{
-	ImGui::SetNextWindowPos(ImVec2(Model_Data_PosX, Model_Data_PosY));
-
-	if (!ImGui::Begin("Model Data", &Show_Model_Data_F, ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoResize
-		| ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoTitleBar))
-	{
-		ImGui::End();
-	}
-	else
-	{
-		ImGui::Spacing();
-		ImGui::Text("Model Info");
-		ImGui::Text("  ");
-		ImGui::Text("Model Name:- %s", App->CL_Scene->JustName);
-		ImGui::Text("Model File Name:- %s", App->CL_Scene->FileName);
-		ImGui::Text("Model Path:- %s", App->CL_Scene->Path_FileName);
-		ImGui::Text("Texture Path:- %s", App->CL_Scene->Texture_FolderPath);
-		ImGui::Text("  ");
-		ImGui::Text("Vertices:- %i", App->CL_Scene->VerticeCount);
-		ImGui::Text("Faces:- %i", App->CL_Scene->FaceCount);
-		ImGui::Text("Groups:- %i", App->CL_Scene->GroupCount);
-		ImGui::Text("Motions:- %i", App->CL_Scene->MotionCount);
-		
-		//ImGui::Text("Texture Count:- %i", App->CLSB_Mesh_Mgr->mTextureCount);
-
-		ImGui::Text("  ");
-
-		ImVec2 Size = ImGui::GetWindowSize();
-		Model_Data_PosX = ((float)App->CL_Ogre->OgreListener->View_Width / 2) - (Size.x / 2);
-		Model_Data_PosY = ((float)App->CL_Ogre->OgreListener->View_Height / 2) - (Size.y / 2);;
-
-		ImGui::Separator();
-
-		if (ImGui::Button("Close"))
-		{
-			Show_Model_Data_F = 0;
-		}
-
-		ImGui::End();
-	}
-}
