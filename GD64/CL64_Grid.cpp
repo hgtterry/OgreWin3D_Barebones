@@ -61,8 +61,7 @@ void CL64_Grid::Grid_Update(bool Create)
 	}
 
 	GridManual->clear();
-	GridManual->begin("Template/White_Alpha", Ogre::RenderOperation::OT_LINE_LIST, App->CL_Ogre->App_Resource_Group);
-	//GridManual->begin("BaseWhiteAlphaBlended", RenderOperation::OT_LINE_LIST, "App_Resource_Group");
+	GridManual->begin("Template/Alpha_Blend_GD64", Ogre::RenderOperation::OT_LINE_LIST, App->CL_Ogre->App_Resource_Group);
 
 	if (ShowGridFlag == 1)
 	{
@@ -140,8 +139,9 @@ void CL64_Grid::Hair_Update(bool Create)
 
 	HairManual->clear();
 
+	HairManual->begin("Template/Alpha_Blend_GD64", RenderOperation::OT_LINE_LIST, "App_Resource_Group");
+	// Template/Alpha_Blend_GD64 is in Media\Core_Data\GDCore.zip
 	
-	HairManual->begin("BaseWhiteAlphaBlended", RenderOperation::OT_LINE_LIST, "App_Resource_Group");
 
 	// X Axis
 	HairManual->position(Ogre::Vector3(YAxis_min - HairExtend, 0, 0));

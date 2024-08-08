@@ -29,7 +29,7 @@ distribution.
 
 CL64_DebugBulletWorld::CL64_DebugBulletWorld(void)
 {
-	Render_Debug_Flag = 1;
+	Render_Debug_Flag = 0;
 	m_debugMode = (DebugDrawModes)DBG_DrawWireframe;
 
 	ColourMain = Ogre::ColourValue(0, 1, 0, 1);
@@ -191,7 +191,6 @@ bool CL64_DebugBulletWorld::Render_Debug(void)
 	}
 	else
 	{
-		App->Flash_Window();
 		Clear_Debug_Render();
 	}
 
