@@ -72,6 +72,8 @@ public:
 	Ogre::Camera* mCamera;
 	Ogre::SceneNode* camNode;
 
+	Ogre::Timer FPStimer;
+	
 	Ogre::String mResourcePath;
 
 	Ogre::String App_Resource_Group;		// App Resource Group
@@ -93,6 +95,8 @@ public:
 	Ogre::SceneNode* OgreNode;
 
 	char Return_Chr[MAX_PATH];
+
+	int FPSLock; // FPS Lock Setable (60 FPS Default)
 
 	bool flag_Hide_Test_Cube;
 

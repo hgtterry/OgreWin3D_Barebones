@@ -50,6 +50,10 @@ CL64_Ogre_Init::CL64_Ogre_Init(void)
 	World_Resource_Group = "World_Resource_Group";
 
 	flag_Hide_Test_Cube = 1;
+
+	FPSLock = 16666; // Default 60 FPS
+
+	FPStimer.reset();
 }
 
 CL64_Ogre_Init::~CL64_Ogre_Init(void)
@@ -340,30 +344,25 @@ bool CL64_Ogre_Init::Ogre_Render_Loop(void)
 
 		if (mWindow->isClosed()) return false;
 
-		//if (FPStimer.getMicroseconds() > Fps_Tick) // FPSLock)
-		//{
-		//	if (Block_RenderingQueued == 0)
-		//	{
-
-		if (!mRoot->_fireFrameStarted())
+		if (FPStimer.getMicroseconds() > FPSLock)
 		{
-			return false;
+			FPStimer.reset();
+
+			if (!mRoot->_fireFrameStarted())
+			{
+				return false;
+			}
+
+			if (!mRoot->_updateAllRenderTargets())
+			{
+				return false;
+			}
+
+			if (!mRoot->_fireFrameEnded())
+			{
+				return false;
+			}
 		}
-
-		if (!mRoot->_updateAllRenderTargets())
-		{
-			return false;
-		}
-
-		if (!mRoot->_fireFrameEnded())
-		{
-			return false;
-		}
-
-		//		FPStimer.reset();
-
-		//	}
-		//}
 	}
 
 	return 1;

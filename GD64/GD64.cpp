@@ -282,14 +282,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 			return TRUE;
 		}
-		
-		// File -------------------------------------------------------
-		case ID_FILE_CONVERTTOOGRE3D:
-		{
-			App->CL_Converters->Convert_ToOgre3D(1);
-			return TRUE;
-		}
-		
+
 		// Camera -------------------------------------------------------
 		case ID_MODE_MODEL:
 		{
@@ -308,6 +301,40 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		case ID_OPTIONS_PREFERENCES:
 		{
 			App->CL_Preferences->Start_Preferences_Dlg();
+			return TRUE;
+		}
+
+		case ID_FPSLOCK_FPS60:
+		{
+			float test = static_cast<float>(1) / 60;
+			test = test * 1000000;
+			App->CL_Ogre->FPSLock = (int)test;
+
+			return TRUE;
+		}
+	
+		case ID_FPSLOCK_FPS100:
+		{
+			float test = static_cast<float>(1) / 100;
+			test = test * 1000000;
+			App->CL_Ogre->FPSLock = (int)test;
+
+			return TRUE;
+		}
+
+		case ID_FPSLOCK_FPS120:
+		{
+			float test = static_cast<float>(1) / 120;
+			test = test * 1000000;
+			App->CL_Ogre->FPSLock = (int)test;
+
+			return TRUE;
+		}
+		
+		case ID_FPSLOCK_FPSNOLOCK:
+		{
+			App->CL_Ogre->FPSLock = 0;
+
 			return TRUE;
 		}
 
